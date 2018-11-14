@@ -1,0 +1,66 @@
+# ===================================================================
+# Development Profile
+
+# Spring Boot Properties
+# ===================================================================
+
+spring:
+  profiles:
+    active: dev
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: false
+  application:
+    name: cis-app
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  datasource:
+    url: jdbc:h2:mem:cisdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      auto-commit: false
+
+logging:
+  file: 
+    max-size: 20MB
+    max-history: 15
+  group:
+    app: com.nab.cis
+    web: org.springframework.web
+    db: org.hibernate
+  level:
+    ROOT: DEBUG
+    app: DEBUG
+    web: INFO
+    db: DEBUG
+
+security:
+  basic:
+    enable: false
+  ignored: /**
+  
+management:
+  security:
+    enabled: false
+    
+server:
+  port: 8080
+  servlet:
+    context-path: /cis-app
+  
+# ===================================================================
+# Application Properties
+# Custom application level properties are defined below
+# ===================================================================
+application:
+  dozer:
+    mapping-files:
+      -
+        dozer-configuration-mapping.xml
